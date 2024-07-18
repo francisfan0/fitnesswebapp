@@ -7,8 +7,11 @@ import {
 import Layout from "./layouts/Layout";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
+import AddProfile from "./pages/AddProfile";
+import { useAppContext } from "./contexts/AppContext";
 
 const App = () => {
+  const { isLoggedIn } = useAppContext();
   return (
     <Router>
       <Routes>
@@ -44,6 +47,19 @@ const App = () => {
             </Layout>
           }
         />
+
+        {isLoggedIn && (
+          <>
+            <Route
+              path="/add-profile"
+              element={
+                <Layout>
+                  <AddProfile />
+                </Layout>
+              }
+            />
+          </>
+        )}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

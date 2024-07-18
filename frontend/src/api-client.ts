@@ -61,3 +61,17 @@ export const signOut = async () => {
     throw new Error("Error during sign out");
   }
 };
+
+export const addMyProfile = async (profileFormData: FormData) => {
+  const response = await fetch(`${API_BASE_URL}/api/profile`, {
+    credentials: "include",
+    method: "POST",
+    body: profileFormData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Error saving profile");
+  }
+
+  return response.json();
+};
