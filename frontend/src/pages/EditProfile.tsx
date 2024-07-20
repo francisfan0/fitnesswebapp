@@ -1,14 +1,17 @@
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
+import * as apiClient from "../api-client";
 import ManageProfileForm from "../forms/ManageProfileForm/ManageProfileForm";
 import { useAppContext } from "../contexts/AppContext";
-import * as apiClient from "../api-client";
 import { useNavigate } from "react-router-dom";
 
-const AddProfile = () => {
+const EditProfile = () => {
   const { showToast } = useAppContext();
   const navigate = useNavigate();
+  const { data: profile } = useQuery("fetchMyProfile", () =>
+    apiClient.fetchMyProfile()
+  );
 
-  const { mutate, isLoading } = useMutation(apiClient.addMyProfile, {
+  const { mutate, isLoading } = useMutation(apiClient.updateMyProfile, {
     onSuccess: () => {
       showToast({ message: "Profile saved!", type: "SUCCESS" });
       navigate("/");
@@ -22,7 +25,13 @@ const AddProfile = () => {
     mutate(profileFormData);
   };
 
-  return <ManageProfileForm onSave={handleSave} isLoading={isLoading} />;
+  return (
+    <ManageProfileForm
+      profile={profile}
+      onSave={handleSave}
+      isLoading={isLoading}
+    />
+  );
 };
 
-export default AddProfile;
+export default EditProfile;

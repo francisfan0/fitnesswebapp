@@ -27,7 +27,7 @@ const Register = () => {
     onSuccess: async () => {
       showToast({ message: "Registration Success", type: "SUCCESS" });
       await queryClient.invalidateQueries("validateToken");
-      navigate("/");
+      navigate("/add-profile");
     },
     onError: (error: Error) => {
       showToast({ message: error.message, type: "ERROR" });
@@ -111,9 +111,9 @@ const Register = () => {
       </label>
       <span className="flex items-center justify-between">
         <span className="text-sm">
-          Not Registered?{" "}
+          Registered?{" "}
           <Link to="/sign-in" className="underline">
-            Create an account here
+            Sign in here
           </Link>
         </span>
         <button

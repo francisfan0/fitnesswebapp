@@ -11,6 +11,8 @@ import AddProfile from "./pages/AddProfile";
 import { useAppContext } from "./contexts/AppContext";
 import AddLogs from "./pages/AddLogs";
 import MyLogs from "./pages/MyLogs";
+import EditProfile from "./pages/EditProfile";
+import EditLog from "./pages/EditLog";
 
 const App = () => {
   const { isLoggedIn } = useAppContext();
@@ -21,7 +23,7 @@ const App = () => {
           path="/"
           element={
             <Layout>
-              <p>Home Page</p>
+              <p>Functionality Coming Soon</p>
             </Layout>
           }
         />
@@ -73,6 +75,22 @@ const App = () => {
               element={
                 <Layout>
                   <MyLogs />
+                </Layout>
+              }
+            />
+            <Route
+              path="/edit-profile"
+              element={
+                <Layout>
+                  <EditProfile />
+                </Layout>
+              }
+            />
+            <Route
+              path="/edit-log/:logId"
+              element={
+                <Layout>
+                  <EditLog />
                 </Layout>
               }
             />

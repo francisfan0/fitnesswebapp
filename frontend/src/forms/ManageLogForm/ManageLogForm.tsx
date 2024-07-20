@@ -1,6 +1,10 @@
 import { FormProvider, useForm } from "react-hook-form";
 import LogSection from "./LogSection";
 import ExerciseSection from "./ExerciseSection";
+import dayjs from "dayjs";
+import { LogType } from "../../../../backend/src/shared/types";
+import { useEffect } from "react";
+import utc from "dayjs/plugin/utc";
 
 export type SetFormData = {
   weight: number;
@@ -15,6 +19,7 @@ export type ExerciseFormData = {
 };
 
 export type LogFormData = {
+  _id: string; // delete if necessary
   date: Date;
   timeSpent: number;
   splitDay: string;
@@ -23,18 +28,42 @@ export type LogFormData = {
 };
 
 type Props = {
+  log?: LogType;
   onSave: (logFormData: FormData) => void;
   isLoading: boolean;
 };
 
-const ManageLogForm = ({ onSave, isLoading }: Props) => {
+const ManageLogForm = ({ onSave, isLoading, log }: Props) => {
   const formMethods = useForm<LogFormData>();
+  dayjs.extend(utc);
 
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, reset } = formMethods;
+
+  useEffect(() => {
+    if (log) {
+      // Use dayjs to format the date to YYYY-MM-DD
+      const date = dayjs(log.date).add(5, "hour").toDate();
+      reset({
+        ...log,
+        date: date, // Use formatted date string for input
+      });
+    } else {
+      reset({
+        date: dayjs(new Date()).toDate(), // Default to current date in YYYY-MM-DD format
+        timeSpent: 0,
+        splitDay: "",
+        location: "",
+        exercises: [],
+      });
+    }
+  }, [log, reset]);
 
   const onSubmit = handleSubmit((formDataJson: LogFormData) => {
     console.log(formDataJson);
     const formData = new FormData();
+    if (log) {
+      formData.append("logId", log._id);
+    }
     formData.append("date", formDataJson.date.toString());
     formData.append("timeSpent", formDataJson.timeSpent.toString());
     formData.append("splitDay", formDataJson.splitDay);

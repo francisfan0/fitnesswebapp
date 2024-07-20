@@ -1,10 +1,14 @@
-import { useFormContext } from "react-hook-form";
+import { useFormContext, Controller } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import dayjs from "dayjs";
 import { LogFormData } from "./ManageLogForm";
 
 const LogSection = () => {
   const {
     register,
     formState: { errors },
+    control,
   } = useFormContext<LogFormData>();
 
   return (
@@ -13,16 +17,42 @@ const LogSection = () => {
       <h2 className="text-2xl font-bold mb-3">Details</h2>
       <label className="text-gray-700 text-sm font-bold flex-1">
         Date
-        <input
+        {/* <input
           type="date"
           className="border rounded w-full py-1 px-2 font-normal"
           {...register("date", {
             required: "Date is required",
           })}
-        ></input>
-        {errors.date && (
+        ></input> */}
+        <Controller
+          name="date"
+          control={control}
+          rules={{ required: "Date is required" }}
+          render={({ field }) => (
+            <div>
+              <DatePicker
+                id="date"
+                selected={field.value ? dayjs(field.value).toDate() : null}
+                onChange={(date) => {
+                  if (date) {
+                    var newDate = dayjs(date).utcOffset("-5:00");
+                    field.onChange(newDate.format("YYYY-MM-DD"));
+                  }
+                }}
+                dateFormat="yyyy-MM-dd"
+                className="border rounded w-full py-1 px-2 font-normal"
+              />
+              {errors.date && (
+                <span className="text-red-600 text-sm">
+                  {errors.date.message}
+                </span>
+              )}
+            </div>
+          )}
+        />
+        {/* {errors.date && (
           <span className="text-red-500">{errors.date.message}</span>
-        )}
+        )} */}
       </label>
       <label className="text-gray-700 text-sm font-bold flex-1">
         Time Spent (in minutes)

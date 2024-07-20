@@ -66,4 +66,43 @@ router.get("/", verifyToken, async (req: Request, res: Response) => {
   }
 });
 
+router.get("/:id", verifyToken, async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id.toString();
+
+    const log = await Log.findOne({ _id: id, userId: req.userId });
+    res.json(log);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching logs" });
+  }
+});
+
+router.put(
+  "/:logId",
+  verifyToken,
+  upload.none(),
+  async (req: Request, res: Response) => {
+    try {
+      const updatedLog: LogType = req.body;
+      updatedLog.lastUpdated = new Date();
+
+      const log = await Log.findOneAndUpdate(
+        {
+          _id: req.params.logId,
+          userId: req.userId,
+        },
+        updatedLog,
+        { new: true }
+      );
+
+      if (!log) return res.status(404).json({ message: "Log not found" });
+
+      await log.save();
+      res.status(201).json(log);
+    } catch (error) {
+      res.status(500).json({ message: "Something went wrong" });
+    }
+  }
+);
+
 export default router;

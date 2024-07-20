@@ -26,6 +26,12 @@ const Header = () => {
               >
                 My Chat
               </Link>
+              <Link
+                to="/edit-profile"
+                className="flex items-center text-white px-3 font-bold hover:text-gray-300 rounded cursor-pointer"
+              >
+                My Profile
+              </Link>
               <SignOutButton></SignOutButton>
             </>
           ) : (

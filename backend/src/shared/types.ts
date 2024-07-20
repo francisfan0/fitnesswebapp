@@ -22,3 +22,16 @@ export type LogType = {
   exercises: ExerciseType[];
   lastUpdated: Date;
 };
+
+export type ProfileType = {
+  _id: string;
+  userId: string;
+  bodyweight: number;
+  height: number;
+  age: number;
+  gender: string;
+  yearsOE: number;
+  goals: string;
+  imageUrls: string[];
+  lastUpdated: Date;
+};

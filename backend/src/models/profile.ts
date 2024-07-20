@@ -1,16 +1,5 @@
 import mongoose from "mongoose";
-
-export type ProfileType = {
-  userId: string;
-  bodyweight: number;
-  height: number;
-  age: number;
-  gender: string;
-  yearsOE: number;
-  goals: string;
-  imageUrls: string[];
-  lastUpdated: Date;
-};
+import { ProfileType } from "../shared/types";
 
 const profileSchema = new mongoose.Schema<ProfileType>({
   userId: {

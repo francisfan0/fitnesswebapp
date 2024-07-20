@@ -1,6 +1,8 @@
 import { FormProvider, useForm } from "react-hook-form";
 import DetailsSection from "./DetailsSection";
 import ImagesSection from "./ImagesSection";
+import { ProfileType } from "../../../../backend/src/shared/types";
+import { useEffect } from "react";
 
 export type ProfileFormData = {
   bodyweight: number;
@@ -10,26 +12,44 @@ export type ProfileFormData = {
   yearsOE: number;
   goals: string;
   imageFiles: FileList;
+  imageUrls: string[];
 };
 
 type Props = {
   onSave: (profileFormData: FormData) => void;
   isLoading: boolean;
+  profile?: ProfileType;
 };
 
-const ManageProfileForm = ({ onSave, isLoading }: Props) => {
+const ManageProfileForm = ({ onSave, isLoading, profile }: Props) => {
   const formMethods = useForm<ProfileFormData>();
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, reset } = formMethods;
+
+  useEffect(() => {
+    reset(profile);
+  }, [profile, reset]);
 
   const onSubmit = handleSubmit((formDataJson: ProfileFormData) => {
     console.log(formDataJson);
     const formData = new FormData();
-    formData.append("bodyweight", formDataJson.bodyweight.toString());
-    formData.append("height", formDataJson.height.toString());
-    formData.append("age", formDataJson.age.toString());
-    formData.append("gender", formDataJson.gender);
-    formData.append("yearsOE", formDataJson.yearsOE.toString());
-    formData.append("goals", formDataJson.goals);
+    if (profile) {
+      formData.append("profileId", profile._id);
+    }
+    if (formDataJson.bodyweight)
+      formData.append("bodyweight", formDataJson.bodyweight.toString());
+    if (formDataJson.height)
+      formData.append("height", formDataJson.height.toString());
+    if (formDataJson.age) formData.append("age", formDataJson.age.toString());
+    if (formDataJson.gender) formData.append("gender", formDataJson.gender);
+    if (formDataJson.yearsOE)
+      formData.append("yearsOE", formDataJson.yearsOE.toString());
+    if (formDataJson.goals) formData.append("goals", formDataJson.goals);
+
+    if (formDataJson.imageUrls) {
+      formDataJson.imageUrls.forEach((url, index) => {
+        formData.append(`imageUrls[${index}]`, url);
+      });
+    }
 
     Array.from(formDataJson.imageFiles).forEach((imageFile) => {
       formData.append("imageFiles", imageFile);
