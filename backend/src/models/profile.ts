@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
 
 export type ProfileType = {
   userId: string;

@@ -9,6 +9,8 @@ import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
 import AddProfile from "./pages/AddProfile";
 import { useAppContext } from "./contexts/AppContext";
+import AddLogs from "./pages/AddLogs";
+import MyLogs from "./pages/MyLogs";
 
 const App = () => {
   const { isLoggedIn } = useAppContext();
@@ -55,6 +57,22 @@ const App = () => {
               element={
                 <Layout>
                   <AddProfile />
+                </Layout>
+              }
+            />
+            <Route
+              path="/add-log"
+              element={
+                <Layout>
+                  <AddLogs />
+                </Layout>
+              }
+            />
+            <Route
+              path="/my-logs"
+              element={
+                <Layout>
+                  <MyLogs />
                 </Layout>
               }
             />

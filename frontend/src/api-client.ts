@@ -1,5 +1,6 @@
 import { RegisterFormData } from "./pages/Register";
 import { SignInFormData } from "./pages/SignIn";
+import { LogType } from "../../backend/src/shared/types";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
@@ -71,6 +72,32 @@ export const addMyProfile = async (profileFormData: FormData) => {
 
   if (!response.ok) {
     throw new Error("Error saving profile");
+  }
+
+  return response.json();
+};
+
+export const addLog = async (logFormData: FormData) => {
+  const response = await fetch(`${API_BASE_URL}/api/my-logs`, {
+    credentials: "include",
+    method: "POST",
+    body: logFormData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Error saving log");
+  }
+
+  return response.json();
+};
+
+export const fetchMyLogs = async (): Promise<LogType[]> => {
+  const response = await fetch(`${API_BASE_URL}/api/my-logs`, {
+    credentials: "include",
+  });
+
+  if (!response.ok) {
+    throw new Error("Error fetching logs");
   }
 
   return response.json();

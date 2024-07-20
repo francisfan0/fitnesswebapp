@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
 import profileRoutes from "./routes/my-profile";
+import logRoutes from "./routes/my-logs";
 import cookieParser from "cookie-parser";
 import path from "path";
 import { v2 as cloudinary } from "cloudinary";
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
+app.use("/api/my-logs", logRoutes);
 
 app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
