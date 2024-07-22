@@ -8,23 +8,7 @@ const Footer = () => {
           fitness_log
         </Link>
         <span className="text-white font-bold tracking-tight flex gap-4">
-          <p>Copyright © 2024 Francis Fan</p>
-          <a
-            href="https://github.com/francisfan0"
-            className="cursor-pointer"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Github
-          </a>
-          <a
-            href="https://www.linkedin.com/in/francis-fan-51293a236/"
-            className="cursor-pointer"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
+          <p>Copyright © 2024 fitness_log</p>
         </span>
       </div>
     </div>
