@@ -13,6 +13,9 @@ import AddLogs from "./pages/AddLogs";
 import MyLogs from "./pages/MyLogs";
 import EditProfile from "./pages/EditProfile";
 import EditLog from "./pages/EditLog";
+import Chat from "./pages/Chat";
+import HomePage from "./pages/HomePage";
+import MyCharts from "./pages/MyCharts";
 
 const App = () => {
   const { isLoggedIn } = useAppContext();
@@ -23,7 +26,7 @@ const App = () => {
           path="/"
           element={
             <Layout>
-              <p>Functionality Coming Soon</p>
+              <HomePage />
             </Layout>
           }
         />
@@ -31,7 +34,7 @@ const App = () => {
           path="/search"
           element={
             <Layout>
-              <p>Search page</p>
+              <p>Search Functionality Coming Soon</p>
             </Layout>
           }
         />
@@ -91,6 +94,22 @@ const App = () => {
               element={
                 <Layout>
                   <EditLog />
+                </Layout>
+              }
+            />
+            <Route
+              path="/my-chat"
+              element={
+                <Layout>
+                  <Chat />
+                </Layout>
+              }
+            />
+            <Route
+              path="/my-charts"
+              element={
+                <Layout>
+                  <MyCharts />
                 </Layout>
               }
             />

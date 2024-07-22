@@ -7,6 +7,8 @@ export type UserType = {
   password: string;
   firstName: string;
   lastName: string;
+  lastChatRequest: string;
+  lastChatRequestDate: Date;
 };
 
 const userSchema = new mongoose.Schema({
@@ -14,6 +16,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
+  lastChatRequest: { type: String },
+  lastChatRequestDate: { type: Date },
 });
 
 userSchema.pre("save", async function (next) {

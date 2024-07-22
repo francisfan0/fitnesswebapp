@@ -9,7 +9,7 @@ import utc from "dayjs/plugin/utc";
 export type SetFormData = {
   weight: number;
   reps: number;
-  rpe: number;
+  rir: number;
   toFailure: boolean;
 };
 
@@ -81,8 +81,8 @@ const ManageLogForm = ({ onSave, isLoading, log }: Props) => {
           set.reps.toString()
         );
         formData.append(
-          `exercises[${exerciseIndex}][sets][${setIndex}][rpe]`,
-          set.rpe.toString()
+          `exercises[${exerciseIndex}][sets][${setIndex}][rir]`,
+          set.rir.toString()
         );
         formData.append(
           `exercises[${exerciseIndex}][sets][${setIndex}][toFailure]`,

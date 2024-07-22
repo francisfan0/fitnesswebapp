@@ -157,3 +157,17 @@ export const updateMyLogById = async (logFormData: FormData) => {
 
   return response.json();
 };
+
+export const addMyChatRequest = async (chatFormData: FormData) => {
+  const response = await fetch(`${API_BASE_URL}/api/my-chat`, {
+    credentials: "include",
+    method: "POST",
+    body: chatFormData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Error fetching chat");
+  }
+
+  return response.json();
+};

@@ -2,7 +2,7 @@ export type SetType = {
   _id: string;
   weight: number;
   reps: number;
-  rpe: number;
+  rir: number;
   toFailure: boolean;
 };
 

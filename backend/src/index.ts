@@ -5,6 +5,8 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
 import profileRoutes from "./routes/my-profile";
+import chartRoutes from "./routes/chart";
+import chatRoutes from "./routes/chat";
 import logRoutes from "./routes/my-logs";
 import cookieParser from "cookie-parser";
 import path from "path";
@@ -34,6 +36,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/my-logs", logRoutes);
+app.use("/api/my-chat", chatRoutes);
+app.use("/api/my-charts", chartRoutes);
 
 app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));

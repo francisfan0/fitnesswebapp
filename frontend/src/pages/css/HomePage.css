@@ -1,0 +1,70 @@
+@import url(https://fonts.googleapis.com/css?family=Outfit);
+
+body {
+  background-color: blanchedalmond;
+  color: firebrick; /* Default text color */
+  font-family: "Outfit", sans-serif; /* Ensure fallback font */
+  padding: 0;
+  margin: 0;
+}
+
+section {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  min-height: 70vh;
+}
+
+.fly-in-section {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fly-in-section.visible {
+  opacity: 1;
+  transform: translateX(0); /* Ensure the element flies in from the left */
+}
+
+.section-title {
+  font-size: 2.5rem; /* Adjust the size as needed */
+  color: firebrick;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem; /* Space below the title */
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Adjust the number of columns as needed */
+  gap: 1.5rem; /* Space between grid items */
+  align-items: center; /* Vertically center content */
+  text-align: center; /* Center text inside grid items */
+}
+
+.section-description {
+  font-size: 1.25rem; /* Adjust the size as needed */
+  color: firebrick;
+  font-weight: bold;
+}
+
+.cta-button {
+  padding: 0.75rem 1.5rem; /* Adjust padding for button size */
+  font-size: 1.25rem; /* Adjust font size */
+  font-weight: bold;
+  color: #fff; /* White text color */
+  background-color: #007bff; /* Blue background color */
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.cta-button:focus {
+  outline: none; /* Remove outline on focus */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Add a subtle focus ring */
+}

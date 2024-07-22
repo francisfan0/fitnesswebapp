@@ -4,7 +4,7 @@ import { ExerciseType, LogType, SetType } from "../shared/types";
 const setSchema = new mongoose.Schema<SetType>({
   weight: { type: Number, required: true },
   reps: { type: Number, required: true },
-  rpe: { type: Number, required: true },
+  rir: { type: Number, required: true },
   toFailure: { type: Boolean, required: true },
 });
 

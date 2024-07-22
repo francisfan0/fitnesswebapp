@@ -28,7 +28,7 @@ router.post(
     body("exercises.*.sets.*.weight")
       .isNumeric()
       .withMessage("Weight must be a number"),
-    body("exercises.*.sets.*.reps")
+    body("exercises.*.sets.*.rir")
       .isNumeric()
       .withMessage("Reps must be a number"),
     body("exercises.*.sets.*.rpe")
