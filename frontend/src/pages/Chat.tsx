@@ -14,7 +14,7 @@ const Chat = () => {
   const [chatMessages, setChatMessages] = useState<
     { text: string; type: "sent" | "received" }[]
   >([]);
-  const [responseMessage, setResponseMessage] = useState<string | null>(null);
+  const [, setResponseMessage] = useState<string | null>(null);
   const { mutate, isLoading } = useMutation(apiClient.addMyChatRequest, {
     onSuccess: (data) => {
       setResponseMessage(data.message); // Update state with the response from server
