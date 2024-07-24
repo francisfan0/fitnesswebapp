@@ -115,6 +115,23 @@ export const fetchMyProfile = async (): Promise<ProfileType> => {
   return response.json();
 };
 
+export const hasPFP = async (): Promise<{ hasProfilePic: boolean }> => {
+  const response = await fetch(`${API_BASE_URL}/api/profile/has-pfp`, {
+    credentials: "include",
+  });
+
+  if (response.status === 400) {
+    // Handle the case where there's no profile picture
+    throw new Error("No profile picture found");
+  }
+
+  if (!response.ok) {
+    throw new Error("Error fetching profile picture status");
+  }
+
+  return response.json();
+};
+
 export const updateMyProfile = async (profileFormData: FormData) => {
   const response = await fetch(`${API_BASE_URL}/api/profile`, {
     method: "PUT",

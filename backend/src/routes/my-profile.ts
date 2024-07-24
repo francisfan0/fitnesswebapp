@@ -69,6 +69,27 @@ router.get("/", verifyToken, async (req: Request, res: Response) => {
   }
 });
 
+router.get("/has-pfp", verifyToken, async (req: Request, res: Response) => {
+  try {
+    const profile = await Profile.findOne({
+      userId: req.userId,
+    });
+
+    if (!profile) {
+      return res.status(404).json({ message: "Profile not found" });
+    }
+
+    if (!profile.imageUrls[0]) {
+      // Throw a specific error when there is no profile picture
+      return res.status(400).json({ message: "No profile picture found" });
+    }
+
+    res.json({ hasProfilePic: true });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching profile picture status" });
+  }
+});
+
 router.put(
   "/",
   verifyToken,
