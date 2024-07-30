@@ -13,6 +13,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useState } from "react";
+// import { useEffect } from "react";
 import ChartModal from "../components/ChartModal";
 import dayjs from "dayjs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -79,6 +80,27 @@ const MyCharts = () => {
   if (!logData) return <div>No Logs found</div>;
 
   const lineGraphData = transformLogsToLineGraphData(logData);
+
+  // useEffect(() => {
+  //   // Load pinned exercise names from localStorage
+  //   console.log("Loading pinned exercises from localStorage");
+  //   const savedExerciseNames = localStorage.getItem("pinnedExercises");
+  //   if (savedExerciseNames) {
+  //     const names = JSON.parse(savedExerciseNames);
+  //     console.log("Found pinned exercise names:", names);
+
+  //     setPinnedExercises(names);
+  //   } else {
+  //     console.log("No pinned exercises found in localStorage");
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   // Extract the names from pinnedExercises and save them to localStorage
+  //   const exerciseNames = pinnedExercises.map((exercise) => exercise.name);
+  //   console.log("Updating localStorage with exercise names:", exerciseNames);
+  //   localStorage.setItem("pinnedExercises", JSON.stringify(exerciseNames));
+  // }, [pinnedExercises]);
 
   const formatDate = (
     date: string | number | Date | dayjs.Dayjs | null | undefined

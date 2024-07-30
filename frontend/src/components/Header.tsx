@@ -99,6 +99,12 @@ const Header = () => {
           {isLoggedIn ? (
             <>
               <Link
+                to="/my-friends"
+                className="text-white px-3 font-bold hover:text-gray-300 rounded cursor-pointer"
+              >
+                My Friends
+              </Link>
+              <Link
                 to="/my-logs"
                 className="text-white px-3 font-bold hover:text-gray-300 rounded cursor-pointer"
               >

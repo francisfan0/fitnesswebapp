@@ -82,7 +82,7 @@ const HomePage = () => {
             Chat with an LLM on the click of a button.
           </p>
           <p className="section-description">
-            Gamify your fitness journey with a progress tracker (coming soon).
+            Gamify your fitness journey with a progress tracker.
           </p>
           <p className="section-description">
             Customized to your personal profile and workouts, why not flex and

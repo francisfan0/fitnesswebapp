@@ -16,6 +16,7 @@ import EditLog from "./pages/EditLog";
 import Chat from "./pages/Chat";
 import HomePage from "./pages/HomePage";
 import MyCharts from "./pages/MyCharts";
+import Friends from "./pages/Friends";
 
 const App = () => {
   const { isLoggedIn } = useAppContext();
@@ -110,6 +111,14 @@ const App = () => {
               element={
                 <Layout>
                   <MyCharts />
+                </Layout>
+              }
+            />
+            <Route
+              path="/my-friends"
+              element={
+                <Layout>
+                  <Friends />
                 </Layout>
               }
             />
