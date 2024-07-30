@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react";
+// import { useEffect, useRef } from "react";
 import "./css/HomePage.css";
-import { Link } from "react-router-dom";
-import { useAppContext } from "../contexts/AppContext";
+// import { Link } from "react-router-dom";
+// import { useAppContext } from "../contexts/AppContext";
 
 const Friends = () => {
-  const { isLoggedIn } = useAppContext();
+  //   const { isLoggedIn } = useAppContext();
 
   return (
     <body>
