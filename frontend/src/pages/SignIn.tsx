@@ -23,6 +23,7 @@ const SignIn = () => {
     onSuccess: async () => {
       showToast({ message: "Sign in Success", type: "SUCCESS" });
       await queryClient.invalidateQueries("validateToken");
+      await queryClient.invalidateQueries("fetchMyProfile");
       navigate("/");
     },
     onError: (error: Error) => {

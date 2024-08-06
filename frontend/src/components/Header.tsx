@@ -89,6 +89,74 @@ const Header = () => {
     );
   }
 
+  if (isLoggedIn) {
+    return (
+      <div className="bg-blue-800 py-6">
+        <div className="container mx-auto flex justify-between">
+          <span className="text-3xl text-white font-bold tracking-tight">
+            <Link to="/">fitness_log</Link>
+          </span>
+          <span className="flex items-center">
+            {isLoggedIn ? (
+              <>
+                <Link
+                  to="/my-friends"
+                  className="text-white px-3 font-bold hover:text-gray-300 rounded cursor-pointer"
+                >
+                  My Friends
+                </Link>
+                <Link
+                  to="/my-logs"
+                  className="text-white px-3 font-bold hover:text-gray-300 rounded cursor-pointer"
+                >
+                  My Logs
+                </Link>
+                <Link
+                  to="/my-charts"
+                  className="text-white px-3 font-bold hover:text-gray-300 rounded cursor-pointer"
+                >
+                  My Progress
+                </Link>
+                <Link
+                  to="/my-chat"
+                  className="text-white px-3 font-bold hover:text-gray-300 rounded cursor-pointer"
+                >
+                  My Chat
+                </Link>
+                <Link
+                  to="/edit-profile"
+                  className="flex items-center text-white px-3 font-bold hover:text-gray-300 rounded cursor-pointer"
+                >
+                  {profile?.imageUrls[0] ? (
+                    <img
+                      src={profile.imageUrls[0]}
+                      alt="Profile"
+                      className="w-8 h-8 rounded-full object-cover"
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="w-8 h-8 text-white"
+                    />
+                  )}
+                  <span className="ml-2"></span>
+                </Link>
+                <SignOutButton />
+              </>
+            ) : (
+              <Link
+                to="/sign-in"
+                className="bg-white text-blue-600 px-3 font-bold hover:bg-gray-100 rounded flex items-center"
+              >
+                Sign In
+              </Link>
+            )}
+          </span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-blue-800 py-6">
       <div className="container mx-auto flex justify-between">
